@@ -5,7 +5,9 @@ itzmrnh
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long int
-
+void solve()
+{
+}
 int main()
 {
     ios_base::sync_with_stdio(false);
@@ -13,37 +15,35 @@ int main()
 
     int n, k;
     cin >> n >> k;
-
-    vector<int> a;
+    int arr[n];
+    int ans = 0;
     for (int i = 0; i < n; i++)
     {
-        cin >> a[i];
+        cin >> arr[i];
     }
 
     int i = 0, j = 0;
-    long long s = 0;
-
-    int ans = 0;
+    ll sum = 0;
 
     while (j < n)
     {
-        s += a[j];
-
-        if (s > k)
+        sum = sum + arr[j];
+        if (sum > k)
         {
-            while (s > k)
+            while (sum > k)
             {
-                s -= a[i];
+                sum = sum - arr[i];
                 i++;
             }
         }
-        if (s == k)
+        if (sum == k)
         {
             ans = max(ans, j - i + 1);
         }
-
         j++;
     }
+
+    cout << ans << endl;
 
     return 0;
 }
