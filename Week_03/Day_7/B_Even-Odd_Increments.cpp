@@ -7,31 +7,32 @@ using namespace std;
 #define ll long long int
 void solve()
 {
-    int n;
-    cin >> n;
-    vector<ll> a(n);
+    int n, q;
+    cin >> n >> q;
+    ll sum = 0;
+    vector<ll> a(n), b(2);
+
     for (int i = 0; i < n; i++)
     {
         cin >> a[i];
+        sum += a[i];
+        b[a[i] % 2]++;
     }
-    ll ans = 0;
-    priority_queue<ll> pq;
-    for (int i = 0; i < n; i++)
+
+    for (int i = 0; i < q; i++)
     {
-        if (a[i] == 0)
+        int x, y;
+        cin >> x >> y;
+        sum += y * b[x];
+        if (y % 2 == 1)
         {
-            if (pq.empty())
-                continue;
-            ans = ans + pq.top();
-            pq.pop();
+            b[1 - x] += b[x];
+            b[x] = 0;
         }
-        else
-        {
-            pq.push(a[i]);
-        }
+        cout << sum << endl;
     }
-    cout << ans << endl;
 }
+
 int main()
 {
     ios_base::sync_with_stdio(false);
