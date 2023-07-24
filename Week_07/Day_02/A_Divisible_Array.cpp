@@ -7,18 +7,23 @@ using namespace std;
 #define ll long long int
 #define yes cout << "YES" << endl;
 #define no cout << "NO" << endl;
+const int N = 2e6 + 1;
+const ll mod = 998244353;
+ll n, m;
+ll a[N], b[N];
 void solve()
 {
-    int N, M;
-    cin >> N >> M;
-    if (N + M > 6)
+    cin >> n;
+    ll s = 0;
+    for (int i = n; i >= 2; i--)
     {
-        yes;
+        a[i] = i;
+        s = (s + i) % n;
     }
-    else
-    {
-        no;
-    }
+    a[1] = n - s;
+    for (int i = 1; i <= n; i++)
+        cout << a[i] << ' ';
+    cout << '\n';
 }
 int main()
 {

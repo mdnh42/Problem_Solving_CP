@@ -9,16 +9,17 @@ using namespace std;
 #define no cout << "NO" << endl;
 void solve()
 {
-    int N, M;
-    cin >> N >> M;
-    if (N + M > 6)
+    int n;
+    cin >> n;
+    for (int i = 1; i < n; i += 2)
     {
-        yes;
+        cout << i << " ";
     }
-    else
+    for (int i = n; i >= 2; i -= 2)
     {
-        no;
+        cout << i << " ";
     }
+    cout << endl;
 }
 int main()
 {

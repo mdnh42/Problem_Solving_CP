@@ -9,26 +9,16 @@ using namespace std;
 #define no cout << "NO" << endl;
 void solve()
 {
-    int N, M;
-    cin >> N >> M;
-    if (N + M > 6)
-    {
-        yes;
-    }
-    else
-    {
-        no;
-    }
+    int a, b;
+    cin >> a >> b;
+    cout << a * b << endl;
 }
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    int t;
-    cin >> t;
-    while (t--)
-    {
-        solve();
-    }
+
+    solve();
+
     return 0;
 }

@@ -9,15 +9,21 @@ using namespace std;
 #define no cout << "NO" << endl;
 void solve()
 {
-    int N, M;
-    cin >> N >> M;
-    if (N + M > 6)
+    int A, B;
+    cin >> A >> B;
+    int StoreA = 100 - A;
+    int StoreB = 200 - B * 2;
+    if (StoreA == StoreB)
     {
-        yes;
+        cout << "BOTH" << endl;
+    }
+    else if (StoreA > StoreB)
+    {
+        cout << "SECOND" << endl;
     }
     else
     {
-        no;
+        cout << "FIRST" << endl;
     }
 }
 int main()

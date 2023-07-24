@@ -7,28 +7,31 @@ using namespace std;
 #define ll long long int
 #define yes cout << "YES" << endl;
 #define no cout << "NO" << endl;
+char convert(int n)
+{
+    char ch = 'a' + n - 1;
+    return ch;
+}
 void solve()
 {
-    int N, M;
-    cin >> N >> M;
-    if (N + M > 6)
+
+    for (int i = 0; i < 26; i++)
     {
-        yes;
-    }
-    else
-    {
-        no;
+        int n;
+        cin >> n;
+        char ch = convert(n);
+        cout << ch;
     }
 }
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    int t;
-    cin >> t;
-    while (t--)
-    {
-        solve();
-    }
+    // int t;
+    // cin >> t;
+    // while (t--)
+    // {
+    solve();
+    // }
     return 0;
 }
