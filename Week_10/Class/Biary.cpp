@@ -2,6 +2,10 @@
 itzmrnh
 */
 
+/*
+Binary Search Variation 1
+
+*/
 #include <bits/stdc++.h>
 using namespace std;
 #include <ext/pb_ds/assoc_container.hpp>
@@ -16,27 +20,39 @@ using pbds = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node
 #define forn(i, n) for (int i = 0; i < int(n); i++)
 #define sz(v) (int)v.size()
 #define all(v) v.begin(), v.end()
-void solve()
-{
-}
+
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    pbds<int> s;
-    s.insert(2);
-    s.insert(4);
-    s.insert(9);
-    s.insert(2);
-    s.insert(7);
-    s.insert(1);
-    s.insert(7);
-    for (auto i : s)
-    {
-        cout << i << " ";
-    }
-    cout << endl;
 
-    cout << *s.find_by_order(4) << endl;
+    int n;
+    cin >> n;
+    int a[n];
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
+    int x;
+    cin >> x;
+    ll l = 0, r = n - 1;
+    int ans = -1;
+    while (l <= r)
+    {
+        int mid = l + (r - l) / 2;
+        if (a[mid] == x)
+        {
+            ans = mid;
+            r = mid - 1;
+        }
+        else if (x < a[mid])
+        {
+            r = mid = 1;
+        }
+        else
+        {
+            l = mid + 1;
+        }
+    }
+
+    cout << ans << endl;
     return 0;
 }

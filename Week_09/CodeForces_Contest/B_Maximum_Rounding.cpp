@@ -16,27 +16,36 @@ using pbds = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node
 #define forn(i, n) for (int i = 0; i < int(n); i++)
 #define sz(v) (int)v.size()
 #define all(v) v.begin(), v.end()
-void solve()
-{
-}
+
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    pbds<int> s;
-    s.insert(2);
-    s.insert(4);
-    s.insert(9);
-    s.insert(2);
-    s.insert(7);
-    s.insert(1);
-    s.insert(7);
-    for (auto i : s)
-    {
-        cout << i << " ";
-    }
-    cout << endl;
+    int T;
+    cin >> T;
 
-    cout << *s.find_by_order(4) << endl;
+    vector<long long> input_values;
+    for (int i = 0; i < T; ++i)
+    {
+        long long val;
+        cin >> val;
+        input_values.push_back(val);
+    }
+
+    for (int i = 0; i < T; ++i)
+    {
+        if (input_values[i] == 0)
+        {
+            cout << 0 << endl;
+            continue;
+        }
+
+        int digits = log10(input_values[i]) + 1;
+        long long factor = pow(10, digits);
+
+        long long result = (input_values[i] + factor - 1) / factor * factor;
+        cout << result << endl;
+    }
+
     return 0;
 }

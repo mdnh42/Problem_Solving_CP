@@ -18,25 +18,38 @@ using pbds = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node
 #define all(v) v.begin(), v.end()
 void solve()
 {
+    int n;
+    cin >> n;
+    vector<int> a(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+    }
+    pbds<int> p;
+    long long ans = 0;
+    for (int i = n - 1; i >= 0; i--)
+    {
+        if (i == (n - 1))
+        {
+            p.insert(a[i]);
+        }
+        else
+        {
+            ans += p.order_of_key(a[i]);
+            p.insert(a[i]);
+        }
+    }
+    cout << ans << endl;
 }
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    pbds<int> s;
-    s.insert(2);
-    s.insert(4);
-    s.insert(9);
-    s.insert(2);
-    s.insert(7);
-    s.insert(1);
-    s.insert(7);
-    for (auto i : s)
+    int t;
+    cin >> t;
+    while (t--)
     {
-        cout << i << " ";
+        solve();
     }
-    cout << endl;
-
-    cout << *s.find_by_order(4) << endl;
     return 0;
 }

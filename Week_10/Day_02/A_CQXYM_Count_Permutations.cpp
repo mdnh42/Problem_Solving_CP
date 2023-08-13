@@ -16,6 +16,7 @@ using pbds = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node
 #define forn(i, n) for (int i = 0; i < int(n); i++)
 #define sz(v) (int)v.size()
 #define all(v) v.begin(), v.end()
+int f[100001];
 void solve()
 {
 }
@@ -23,20 +24,17 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    pbds<int> s;
-    s.insert(2);
-    s.insert(4);
-    s.insert(9);
-    s.insert(2);
-    s.insert(7);
-    s.insert(1);
-    s.insert(7);
-    for (auto i : s)
+    f[1] = 1;
+    for (register int i = 2; i != 100001; i++)
     {
-        cout << i << " ";
+        f[i] = ((i << 1) - 1ll) * f[i - 1] % 1000000007 * (i << 1) % 1000000007;
     }
-    cout << endl;
-
-    cout << *s.find_by_order(4) << endl;
+    int n;
+    scanf("%d", &n);
+    for (register int i = n; i != 0; i--)
+    {
+        scanf("%d", &n);
+        printf("%d\n", f[n]);
+    }
     return 0;
 }
