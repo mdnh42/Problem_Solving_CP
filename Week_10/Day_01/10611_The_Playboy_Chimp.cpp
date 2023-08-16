@@ -16,44 +16,39 @@ using pbds = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node
 #define forn(i, n) for (int i = 0; i < int(n); i++)
 #define sz(v) (int)v.size()
 #define all(v) v.begin(), v.end()
-void solve()
-{
-}
+
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    int n, x;
-    cin >> n >> x;
+    int n;
+    cin >> n;
     vector<int> a(n);
     for (int i = 0; i < n; i++)
     {
         cin >> a[i];
     }
-    int l = 0;
-    int r = n - 1;
-    while (l <= r)
+    int q;
+    cin >> q;
+    while (q--)
     {
-        int mid = l + (r - l) / 2;
-        if (a[mid] == x)
-        {
-            cout << a[mid];
-            break;
-        }
-        else if (x < a[mid])
-        {
-            r = mid - 1;
-        }
-        else
-        {
-            l = mid + 1;
-        }
-    }
+        int x;
+        cin >> x;
+        auto it1 = lower_bound(a.begin(), a.end(), x);
+        auto it2 = upper_bound(a.begin(), a.end(), x);
+        int idx1 = it1 - a.begin();
+        int idx2 = it2 - a.begin();
 
+        if (idx1 == 0)
+            cout << "X ";
+
+        else
+            cout << a[idx1 - 1] << " ";
+
+        if (idx2 == n)
+            cout << "X" << endl;
+        else
+            cout << a[idx2] << endl;
+    }
     return 0;
 }
-
-/*
-9 3
-1 2 2 3 3 3 5 6 6
-*/

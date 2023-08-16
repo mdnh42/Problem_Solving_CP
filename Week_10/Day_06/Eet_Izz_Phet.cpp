@@ -16,44 +16,49 @@ using pbds = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node
 #define forn(i, n) for (int i = 0; i < int(n); i++)
 #define sz(v) (int)v.size()
 #define all(v) v.begin(), v.end()
-void solve()
+const int mod = 1e9 + 7;
+int hashing(string s, int base)
 {
+
+    int val = 1;
+    int ans = 0;
+    for (char c : s)
+    {
+        int asci = c - 'a' + 1;
+        ans += ((asci % mod) * (val % mod)) % mod;
+        // Mod Formula
+        //(a*b)%mod = (a%mod) * (b%mod)
+        val = ((val % mod) * (base % mod)) % mod;
+    }
+    return ans;
 }
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    int n, x;
-    cin >> n >> x;
-    vector<int> a(n);
+    int n;
+    cin >> n;
+    set<pair<int, int>> st;
     for (int i = 0; i < n; i++)
     {
-        cin >> a[i];
+        string s;
+        cin >> s;
+        st.insert({hashing(s, 2), hashing(s, 3)});
     }
-    int l = 0;
-    int r = n - 1;
-    while (l <= r)
+    int q;
+    cin >> q;
+    while (q--)
     {
-        int mid = l + (r - l) / 2;
-        if (a[mid] == x)
+        string s;
+        cin >> s;
+        if (st.count({hashing(s, 2), hashing(s, 3)}) > 0)
         {
-            cout << a[mid];
-            break;
-        }
-        else if (x < a[mid])
-        {
-            r = mid - 1;
+            cout << "yes" << endl;
         }
         else
         {
-            l = mid + 1;
+            cout << "no" << endl;
         }
     }
-
     return 0;
 }
-
-/*
-9 3
-1 2 2 3 3 3 5 6 6
-*/

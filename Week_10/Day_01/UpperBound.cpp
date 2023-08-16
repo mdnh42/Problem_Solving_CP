@@ -30,25 +30,10 @@ int main()
     {
         cin >> a[i];
     }
-    int l = 0;
-    int r = n - 1;
-    while (l <= r)
-    {
-        int mid = l + (r - l) / 2;
-        if (a[mid] == x)
-        {
-            cout << a[mid];
-            break;
-        }
-        else if (x < a[mid])
-        {
-            r = mid - 1;
-        }
-        else
-        {
-            l = mid + 1;
-        }
-    }
+
+    auto it = upper_bound(a.begin(), a.end(), x);
+    int idx = it - a.begin();
+    cout << idx << endl;
 
     return 0;
 }
