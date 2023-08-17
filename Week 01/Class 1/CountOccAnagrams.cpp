@@ -6,8 +6,7 @@ int main()
     string txt, ptr;
     cin >> txt >> ptr;
 
-    int k = ptr.size(), i = 0;
-    j = 0;
+    int k = ptr.size(), i = 0, j = 0;
 
     int fr1[26] = {0};
     int fr2[26] = {0};
