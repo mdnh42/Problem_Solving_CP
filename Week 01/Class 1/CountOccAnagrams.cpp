@@ -1,61 +1,74 @@
+/*
+itzmrnh
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
-
-int main()
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+using namespace __gnu_pbds;
+template <typename T>
+using pbds = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+#define ll long long int
+#define yes cout << "YES" << endl;
+#define no cout << "NO" << endl;
+#define SIZE 26;
+#define forn(i, n) for (int i = 0; i < int(n); i++)
+#define sz(v) (int)v.size()
+#define all(v) v.begin(), v.end()
+int search(string pat, string txt)
 {
-    string txt, ptr;
-    cin >> txt >> ptr;
-
-    int k = ptr.size(), i = 0, j = 0;
+    int k = pat.size(), i = 0, j = 0;
 
     int fr1[26] = {0};
     int fr2[26] = {0};
 
-    for (char c : ptr)
+    for (char c : pat)
     {
-        fr1[-'a']++;
+        fr1[c - 'a']++;
     }
 
     int ans = 0;
 
     while (j < txt.size())
     {
-        fr2[txt[j]]
-    }
-
-    long long int Arr[N];
-    for (int i = 0; i < N; i++)
-        cin >> Arr[i];
-
-    int K;
-    cin >> K;
-
-    long long int I = 0, J = 0;
-    queue<int> q;
-    while (J < N)
-    {
-        if (Arr[J] < 0)
+        fr2[txt[j] - 'a']++;
+        if (j < k - 1)
         {
-            q.push(Arr[J]);
-        }
-        if (J < K - 1)
-        {
-            J++;
+            j++;
         }
         else
         {
-            if (q.empty())
-                cout << 0 << " ";
-            else
-                cout << q.front() << " ";
-            if (Arr[I] < 0)
+            bool flag = true;
+            for (int v = 0; v < 26; v++)
             {
-                q.pop();
+                if (fr1[v] != fr2[v])
+                {
+                    flag = false;
+                    break;
+                }
             }
-            I++;
-            J++;
+            if (flag)
+                ans++;
+            fr2[txt[i] - 'a']--;
+            i++;
+            j++;
         }
     }
+
+    return ans;
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    string txt, pat;
+    cin >> txt >> pat;
+
+    auto ans = search(pat, txt);
+
+    cout << ans << endl;
 
     return 0;
 }
