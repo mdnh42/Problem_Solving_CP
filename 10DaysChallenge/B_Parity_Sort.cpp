@@ -18,51 +18,39 @@ using pbds = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node
 #define all(v) v.begin(), v.end()
 const int MAX_SIZE = 1e5 + 10;
 int freq[MAX_SIZE] = {0};
-vector<ll> v;
 void solve()
 {
-    ll n;
+    int n;
     cin >> n;
-    ll a[n];
-    ll fre[35000] = {0};
-    for (ll i = 0; i < n; i++)
+    vector<int> a(n);
+    vector<int> b(n);
+
+    for (int i = 0; i < n; i++)
     {
         cin >> a[i];
-        freq[a[i]]++;
+        b[i] = a[i];
     }
-    ll ans = 0;
-    for (ll i = 0; i < n; i++)
-    {
-        for (ll j = 0; j < v.size(); j++)
-        {
-            ll k = a[i] ^ v[j];
-            if (k > (1 << 15))
-            {
-                continue;
-            }
-            ll x = freq[k];
-            ans += freq[k];
-        }
-    }
-    cout << (ans + n) / 2 << endl;
-}
 
-bool isPalindrome(ll val)
-{
-    string ans = to_string(val);
-    string ans2 = ans;
-    reverse(ans2.begin(), ans2.end());
-    return ans == ans2;
+    sort(b.begin(), b.end());
+    bool ans = true;
+    for (int i = 0; i < n; i++)
+    {
+        if ((a[i] % 2) != (b[i] % 2))
+            ans = false;
+    }
+    if (ans)
+    {
+        yes;
+    }
+    else
+    {
+        no;
+    }
 }
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    for (ll i = 0; i < (1 << 15); i++)
-        if (isPalindrome(i))
-        {
-            v.push_back(i);
-        }
     int t;
     cin >> t;
     while (t--)

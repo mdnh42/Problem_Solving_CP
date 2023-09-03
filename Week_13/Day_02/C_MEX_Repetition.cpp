@@ -18,51 +18,48 @@ using pbds = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node
 #define all(v) v.begin(), v.end()
 const int MAX_SIZE = 1e5 + 10;
 int freq[MAX_SIZE] = {0};
-vector<ll> v;
 void solve()
 {
-    ll n;
-    cin >> n;
-    ll a[n];
-    ll fre[35000] = {0};
-    for (ll i = 0; i < n; i++)
+    int n, k;
+    cin >> n >> k;
+    k %= (n + 1);
+    vector<int> a(n);
+
+    vector<bool> vis(n + 1);
+    for (int i = 0; i < n; i++)
     {
         cin >> a[i];
-        freq[a[i]]++;
+        vis[a[i]] = 1;
     }
-    ll ans = 0;
-    for (ll i = 0; i < n; i++)
+
+    int nai = -1;
+    for (int i = 0; i <= n; i++)
     {
-        for (ll j = 0; j < v.size(); j++)
+        if (vis[i] == 0)
         {
-            ll k = a[i] ^ v[j];
-            if (k > (1 << 15))
-            {
-                continue;
-            }
-            ll x = freq[k];
-            ans += freq[k];
+            nai = i;
         }
     }
-    cout << (ans + n) / 2 << endl;
-}
 
-bool isPalindrome(ll val)
-{
-    string ans = to_string(val);
-    string ans2 = ans;
-    reverse(ans2.begin(), ans2.end());
-    return ans == ans2;
+    deque<int> dq(a.begin(), a.end());
+
+    for (int i = 0; i < k; i++)
+    {
+        int val = nai;
+        dq.push_front(val);
+        nai = dq.back();
+        dq.pop_back();
+    }
+    for (int i = 0; i < dq.size(); i++)
+    {
+        cout << dq[i] << " ";
+    }
+    cout << endl;
 }
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    for (ll i = 0; i < (1 << 15); i++)
-        if (isPalindrome(i))
-        {
-            v.push_back(i);
-        }
     int t;
     cin >> t;
     while (t--)
